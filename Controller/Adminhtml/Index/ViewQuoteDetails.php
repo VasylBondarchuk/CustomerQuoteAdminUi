@@ -51,8 +51,12 @@ class ViewQuoteDetails extends Action
      */
     public function execute()
     {
-        $this->updateQuote->changeQuoteStatusToOpen();
-        $this->updateQuote->changeQuoteUpdateTime();
+
+        if(!$this->updateQuote->isQuoteOpenForEditing($this->updateQuote->getQuoteIdFromUrl()))
+        {
+            $this->messageManager->addErrorMessage(__('This quote is currently locked for editing.
+                It will become available once released by the buyer.'));
+        }
 
         $resultPage = $this->resultPageFactory->create();
 

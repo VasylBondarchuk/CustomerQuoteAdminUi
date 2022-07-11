@@ -9,14 +9,24 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Result\PageFactory;
 use Psr\Log\LoggerInterface;
 
+use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use CustomerQuote\CustomerQuoteAdminUi\Model\UpdateQuote;
 
 /**
  *
  */
 class EditQuoteItem extends Action
 {
+    /**
+     * @var PageFactory
+     */
+    private PageFactory $resultPageFactory;
 
-    private $resultPageFactory;
+    /**
+     * @var UpdateQuote
+     */
+    private UpdateQuote $updateQuote;
 
     /**
      * @param Context $context
@@ -26,9 +36,13 @@ class EditQuoteItem extends Action
     public function __construct(
         Context                   $context,
         PageFactory               $resultPageFactory,
+        QuoteItemsRepositoryInterface $quoteItemsRepository,
+        QuoteRepositoryInterface $quoteRepository,
+        UpdateQuote $updateQuote,
         LoggerInterface           $logger
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->updateQuote = $updateQuote;
         $this->logger = $logger;
         parent::__construct($context);
     }
@@ -40,11 +54,22 @@ class EditQuoteItem extends Action
      */
     public function execute()
     {
-        $quoteItemId = (int)$this->getRequest()->getParam('quote_item_id');
+        if($this->updateQuote->isQuoteOpenForEditing($this->getQuoteId())) {
+            $resultPage = $this->resultPageFactory->create();
+            $resultPage->getConfig()->getTitle()->prepend(__("Edit Quote Item #".$this->getQuoteItemId()));
+            return $resultPage;
+        }
+        $resultRedirect = $this->resultRedirectFactory->create();
+        return $resultRedirect->setRefererOrBaseUrl();
+    }
 
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage
-            ->getConfig()->getTitle()->prepend(__("Edit Quote Item # $quoteItemId"));
-        return $resultPage;
+    public function getQuoteId(): int
+    {
+        return $this->updateQuote->getQuoteIdByQuoteItemId();
+    }
+
+    public function getQuoteItemId(): int
+    {
+        return $this->updateQuote->getQuoteItemIdFromUrl();
     }
 }

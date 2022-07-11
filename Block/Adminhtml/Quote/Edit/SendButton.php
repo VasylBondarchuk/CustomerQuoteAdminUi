@@ -19,7 +19,7 @@ class SendButton extends GenericButton implements ButtonProviderInterface
                         'actions' => [
                             [
                                 'targetName' => 'quote_view_form.quote_view_form',
-                                'actionName' => 'save',
+                                'actionName' => 'send',
                                 'params' => [
                                     false,
                                 ],

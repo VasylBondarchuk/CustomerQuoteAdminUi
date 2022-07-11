@@ -27,9 +27,9 @@
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
-        <settings>
+        <!--<settings>
             <submitUrl path="*/*/send"/>
-        </settings>
+        </settings>-->
         <dataProvider class="CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteDataProvider"
                       name="quote_view_form_data_source">
             <settings>

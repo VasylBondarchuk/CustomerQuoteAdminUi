@@ -40,6 +40,7 @@ class Decline extends Action
      */
     public function execute()
     {
+        //echo 'Declined';exit;
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
             $this->updateQuote->changeQuoteStatusToDeclined();

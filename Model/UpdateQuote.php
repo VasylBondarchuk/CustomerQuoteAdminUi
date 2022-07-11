@@ -4,50 +4,31 @@ namespace CustomerQuote\CustomerQuoteAdminUi\Model;
 
 use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
 use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\App\RequestInterface;
+
 
 /**
  *
  */
 class UpdateQuote
 {
-    /**
-     *
-     */
     const QUOTE_STATUS_NEW = 'New';
-    /**
-     *
-     */
     const QUOTE_STATUS_OPEN = 'Open';
-    /**
-     *
-     */
     const QUOTE_STATUS_SUBMITTED = 'Submitted';
-    /**
-     *
-     */
     const QUOTE_STATUS_CLIENT_REVIEWED = 'Client Reviewed';
-    /**
-     *
-     */
     const QUOTE_STATUS_UPDATED = 'Updated';
-    /**
-     *
-     */
     const QUOTE_STATUS_ORDERED = 'Ordered';
-    /**
-     *
-     */
     const QUOTE_STATUS_CLOSED = 'Closed';
-    /**
-     *
-     */
     const QUOTE_STATUS_DECLINED = 'Declined';
+
     /**
      * @var QuoteRepositoryInterface
      */
     private QuoteRepositoryInterface $quoteRepository;
+
+    private QuoteItemsRepositoryInterface $quoteItemsRepository;
 
     /**
      * @var DateTime
@@ -65,10 +46,12 @@ class UpdateQuote
      */
     public function __construct(
         QuoteRepositoryInterface  $quoteRepository,
+        QuoteItemsRepositoryInterface  $quoteItemsRepository,
         DateTime                  $date,
         RequestInterface          $request
     ) {
         $this->quoteRepository = $quoteRepository;
+        $this->quoteItemsRepository = $quoteItemsRepository;
         $this->date = $date;
         $this->request = $request;
     }
@@ -78,12 +61,10 @@ class UpdateQuote
      */
     public function changeQuoteStatusToOpen()
     {
-        if($this->getQuoteStatus() === self::QUOTE_STATUS_NEW){
             $this->quoteRepository
                 ->save($this->getQuoteModel()
                     ->setQuoteStatus(self::QUOTE_STATUS_OPEN)
                 );
-        }
     }
 
     /**
@@ -128,7 +109,6 @@ class UpdateQuote
     }
 
     /**
-     * @param $quoteId
      * @return QuoteInterface
      */
     public function getQuoteModel() : QuoteInterface
@@ -150,5 +130,24 @@ class UpdateQuote
     public function getQuoteIdFromUrl(): int
     {
         return (int)$this->request->getParam('quote_id');
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuoteItemIdFromUrl(): int
+    {
+        return (int)$this->request->getParam('quote_item_id');
+    }
+
+    public function isQuoteOpenForEditing(int $quoteId): bool
+    {
+        $quoteModelStatus = $this->quoteRepository->getById($quoteId)->getQuoteStatus();
+        return $quoteModelStatus === UpdateQuote::QUOTE_STATUS_OPEN;
+    }
+
+    public function getQuoteIdByQuoteItemId(): bool
+    {
+        return $this->quoteItemsRepository->getById($this->getQuoteItemIdFromUrl())->getQuoteId();
     }
 }

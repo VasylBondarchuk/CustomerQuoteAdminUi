@@ -14,7 +14,7 @@ class ViewQuoteAction extends Column
     © 2018 M2Training.com.ua 6
      * Url path
      */
-    const URL_PATH_EDIT = 'quote/index/viewquotedetails';
+    const URL_PATH_EDIT = 'quote/index/open';
     /**
      * @var UrlInterface
      */
@@ -57,7 +57,7 @@ class ViewQuoteAction extends Column
                     $item[$this->getData('name')] = [
                         'view' => [
                             'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_EDIT,
+                                self::URL_PATH_EDIT,
                                 [
                                     'quote_id' => $item['quote_id']
                                 ]

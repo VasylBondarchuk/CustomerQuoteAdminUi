@@ -13,7 +13,7 @@ use CustomerQuote\CustomerQuoteAdminUi\Model\UpdateQuote;
 /**
  *
  */
-class Send extends Action
+class Open extends Action
 {
     /**
      * @var LoggerInterface
@@ -41,15 +41,16 @@ class Send extends Action
      */
     public function execute()
     {
-        //echo 'Submitted';exit;
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
-            $this->updateQuote->changeQuoteStatusToSubmitted();
+            $this->updateQuote->changeQuoteStatusToOpen();
             $this->updateQuote->changeQuoteUpdateTime();
         } catch (LocalizedException $exception) {
             $this->logger->error($exception->getLogMessage());
         }
-        return $resultRedirect->setRefererOrBaseUrl();
+        return $resultRedirect->setPath(
+            'quote/index/viewquotedetails/',
+            ['quote_id' => $this->updateQuote->getQuoteIdFromUrl()]);
     }
 }
 
