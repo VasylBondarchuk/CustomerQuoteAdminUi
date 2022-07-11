@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface" type="CustomerQuote\CustomerQuoteAdminUi\Model\Quote" />
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface" type="CustomerQuote\CustomerQuoteAdminUi\Model\QuoteRepository"/>
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface" type="CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItems" />
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface" type="CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItemsRepository"/>
+    <preference for="CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quote_listing_data_source" xsi:type="string">
+                    CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">negotiable_quotes</argument>
+            <argument name="resourceModel" xsi:type="string">CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="quote_items_listing_data_source" xsi:type="string">
+                    CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

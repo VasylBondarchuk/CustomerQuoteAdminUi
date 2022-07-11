@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CustomerQuote_CustomerQuoteAdminUi::quote" title="Customer Quotes" translate="title" module="CustomerQuote_CustomerQuoteAdminUi"
+             sortOrder="10" action="quote/index/index"
+             resource="CustomerQuote_CustomerQuoteAdminUi::quote"/>
+    </menu>
+</config>

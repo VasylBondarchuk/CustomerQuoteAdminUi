@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider"
+                  xsi:type="string">quoteitem_view_form.quoteitem_view_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Quote item</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back">
+                <url path="*/*/index"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save">
+                <url path="*/*/save"/>
+                <class>save</class>
+                <label translate="true">Save</label>
+            </button>
+        </buttons>
+        <namespace>quoteitem_view_form</namespace>
+        <deps>
+            <dep>quoteitem_view_form.quoteitem_view_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="quoteitem_view_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteItemDataProvider"
+                      name="quoteitem_view_form_data_source">
+            <settings>
+                <requestFieldName>quote_item_id</requestFieldName>
+                <primaryFieldName>quote_item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="quoteitem_details">
+
+        <settings>
+            <label translate="true">Quote item details</label>
+            <dataScope>data</dataScope>
+        </settings>
+
+        <field name="product_id" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Product SKU</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Product SKU</label>
+                <dataScope>product_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="proposed_qty" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">proposed_qty</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Proposed Qty</label>
+                <dataScope>proposed_qty</dataScope>
+            </settings>
+        </field>
+
+
+        <field name="product_catalog_price" sortOrder="25" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product_catalog_price</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Catalog Price</label>
+                <dataScope>product_catalog_price</dataScope>
+            </settings>
+        </field>
+
+
+        <field name="proposed_price" sortOrder="30" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">proposed_price</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Proposed Price</label>
+                <dataScope>proposed_price</dataScope>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>
