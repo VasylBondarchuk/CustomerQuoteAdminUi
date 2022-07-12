@@ -19,7 +19,7 @@ class GenericButton
         return (int)$this->context->getRequest()->getParam('quote_id');
     }
 
-    public function getQuoteItemId()
+    public function getQuoteItemId(): int
     {
         return (int)$this->context->getRequest()->getParam('quote_item_id');
     }

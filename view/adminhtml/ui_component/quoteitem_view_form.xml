@@ -21,6 +21,7 @@
                 <class>save</class>
                 <label translate="true">Save</label>
             </button>
+            <button name="delete" class="CustomerQuote\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\DeleteButton"/>
         </buttons>
         <namespace>quoteitem_view_form</namespace>
         <deps>

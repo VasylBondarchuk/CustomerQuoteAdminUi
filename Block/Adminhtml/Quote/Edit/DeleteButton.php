@@ -6,12 +6,12 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
-    public function getButtonData()
+    public function getButtonData(): array
     {
         $data = [];
-        if ($this->getFeedbackId()) {
+        if ($this->getQuoteItemId()) {
             $data = [
-                'label' => __('Delete Feedback'),
+                'label' => __('Delete'),
                 'class' => 'delete',
                 'on_click' => 'deleteConfirm(\'' . __(
                         'Are you sure you want to do this?'
@@ -21,8 +21,8 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         }
         return $data;
     }
-    public function getDeleteUrl()
+    public function getDeleteUrl(): string
     {
-        return $this->getUrl('*/*/delete', ['feedback_id' => $this->getFeedbackId()]);
+        return $this->getUrl('*/*/delete', ['quote_item_id' => $this->getQuoteItemId()]);
     }
 }
