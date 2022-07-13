@@ -84,13 +84,13 @@
         </settings>
 
 
-        <column name="quote_item_id">
+        <!--<column name="quote_item_id">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
                 <sorting>asc</sorting>
             </settings>
-        </column>
+        </column>-->
 
 
         <column name="product_sku" class = 'CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductSku'>
