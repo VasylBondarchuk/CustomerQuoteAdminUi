@@ -5,26 +5,35 @@ declare(strict_types=1);
 namespace CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column;
 
 use Magento\Catalog\Model\ProductRepository;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
+use Psr\Log\LoggerInterface;
 
 /**
- Displays question text by its question_id in the 'Answers Manager' grid
+Displays question text by its question_id in the 'Answers Manager' grid
  */
 class ProductName extends Column
 {
-    private $productRepository;
+    private ProductRepository $productRepository;
+
+    /**
+     * @var LoggerInterface
+     */
+    private LoggerInterface $logger;
 
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         ProductRepository $productRepository,
+        LoggerInterface               $logger,
         array $components = [],
         array $data = []
     ) {
         $this->productRepository = $productRepository;
+        $this->logger = $logger;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -47,6 +56,12 @@ class ProductName extends Column
 
     private function getProductNameById(int $productId): string
     {
-        return $this->productRepository->getById($productId)->getName();
+        try {
+            $productName = $this->productRepository->getById($productId)->getName();
+        } catch (LocalizedException $exception) {
+            $this->logger->error($exception->getLogMessage());
+            $productName = '';
+        }
+        return $productName;
     }
 }

@@ -83,33 +83,38 @@
             </childDefaults>
         </settings>
 
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>quote_item_id</indexField>
+            </settings>
+        </selectionsColumn>
 
-        <!--<column name="quote_item_id">
+        <column name="quote_item_id" sortOrder="10">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">ID</label>
                 <sorting>asc</sorting>
             </settings>
-        </column>-->
-
-
-        <column name="product_sku" class = 'CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductSku'>
-            <settings>
-                <filter>text</filter>
-                <label translate="true">Product SKU</label>
-                <sorting>asc</sorting>
-            </settings>
         </column>
 
-        <column name="product_id" class = 'CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductName'>
+
+        <column name="product_id" class = "CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductName" sortOrder="20">
             <settings>
-                <filter>textRange</filter>
+                <filter>text</filter>
                 <label translate="true">Product Name</label>
                 <sorting>asc</sorting>
             </settings>
         </column>
 
-        <column name="proposed_qty">
+        <!--<column name="product_sku" class = "CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductSku">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product SKU</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>-->
+
+        <column name="proposed_qty" sortOrder="30">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">Proposed Qty</label>
@@ -117,14 +122,15 @@
             </settings>
         </column>
 
-        <column name="proposed_price" class = 'CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\CurrencySymbol'>
+        <column name="proposed_price" class = "CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\CurrencySymbol" sortOrder="40">
             <settings>
                 <filter>textRange</filter>
                 <label translate="true">Proposed price</label>
                 <sorting>asc</sorting>
             </settings>
         </column>
-        <actionsColumn name="actions" class="CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\EditQuoteItemAction">
+
+        <actionsColumn name="actions" class="CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\EditQuoteItemAction" sortOrder="50">
             <settings>
                 <indexField>quote_id</indexField>
             </settings>
