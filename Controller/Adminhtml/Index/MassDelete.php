@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
@@ -13,11 +12,10 @@ use Psr\Log\LoggerInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
+use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
 
-
-class MassStatus extends Action implements HttpPostActionInterface
+class MassDelete extends Action implements HttpPostActionInterface
 {
     /**
      * Massactions filter
@@ -32,7 +30,7 @@ class MassStatus extends Action implements HttpPostActionInterface
     protected CollectionFactory $collectionFactory;
 
 
-    private QuoteRepositoryInterface $quoteRepository;
+    private QuoteItemsRepositoryInterface $quoteItemsRepository;
 
     /**
      * @var LoggerInterface
@@ -43,13 +41,13 @@ class MassStatus extends Action implements HttpPostActionInterface
         Context                   $context,
         Filter                    $filter,
         CollectionFactory         $collectionFactory,
-        QuoteRepositoryInterface  $quoteRepository,
+        QuoteItemsRepositoryInterface  $quoteItemsRepository,
         LoggerInterface           $logger = null
     ) {
         parent::__construct($context);
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
-        $this->quoteRepository = $quoteRepository;
+        $this->quoteItemsRepository = $quoteItemsRepository;
         $this->logger = $logger;
     }
 
@@ -59,40 +57,37 @@ class MassStatus extends Action implements HttpPostActionInterface
      * @return Redirect
      * @throws LocalizedException
      */
-
-
     public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
-        $quoteStatus = 0;
-        $quoteStatusError = 0;
-        $status = $this->getRequest()->getParam('status');
+        $quoteItemsDeteleted = 0;
+        $quoteItemsDeteletedError = 0;
 
-        foreach ($collection->getItems() as $quote) {
+        foreach ($collection->getItems() as $quoteItem) {
             try {
-                $this->quoteRepository->save($quote->setQuoteStatus($status));
-                $quoteStatus++;
+                $this->quoteItemsRepository->delete($quoteItem);
+                $quoteItemsDeteleted++;
             } catch (LocalizedException $exception) {
                 $this->logger->error($exception->getLogMessage());
-                $quoteStatusError++;
+                $quoteItemsDeteletedError++;
             }
         }
 
-        if ($quoteStatus) {
+        if ($quoteItemsDeteleted) {
             $this->messageManager->addSuccessMessage(
-                __('A total of %1 record(s) have been updated.', $quoteStatus)
+                __('A total of %1 record(s) have been deleted.', $quoteItemsDeteleted)
             );
         }
 
-        if ($quoteStatusError) {
+        if ($quoteItemsDeteletedError) {
             $this->messageManager->addErrorMessage(
                 __(
-                    'A total of %1 record(s) haven\'t been updated. Please see server logs for more details.',
-                    $quoteStatusError
+                    'A total of %1 record(s) haven\'t been deleted. Please see server logs for more details.',
+                    $quoteItemsDeteletedError
                 )
             );
         }
 
-        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('quote/index/index/');
+        return $this->resultFactory->create(ResultFactory::TYPE_REDIRECT)->setPath('*/*/');
     }
 }

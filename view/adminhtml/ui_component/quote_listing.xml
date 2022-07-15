@@ -65,18 +65,6 @@
         </settings>
     </filters>
     <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
-        <action name="delete">
-            <settings>
-                <confirm>
-                    <message translate="true">Are you sure you want to delete the selected items?</message>
-                    <title translate="true">Delete items</title>
-                </confirm>
-                <url path="quote/index/massDelete"/>
-                <type>delete</type>
-                <label translate="true">Delete</label>
-            </settings>
-        </action>
-
         <action name="status">
             <settings>
                 <type>status</type>
