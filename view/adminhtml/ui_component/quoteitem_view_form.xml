@@ -84,7 +84,6 @@
             </settings>
         </field>
 
-
         <field name="product_catalog_price" sortOrder="25" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -97,7 +96,6 @@
                 <dataScope>product_catalog_price</dataScope>
             </settings>
         </field>
-
 
         <field name="proposed_price" sortOrder="30" formElement="input">
             <argument name="data" xsi:type="array">
