@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider"
+                  xsi:type="string">quote_listing.quote_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>quote_columns</spinner>
+        <deps>
+            <dep>quote_listing.quote_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="quote_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">quote_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">quote_id</argument>
+            <argument name="requestFieldName" xsi:type="string">quote_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">quote_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">quote_listing.quote_listing.quote_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template"
+                                   xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component"
+                                   xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>status</type>
+                            <label translate="true">Decline</label>
+                            <url path="quote/index/massStatus">
+                                <param name="status">Decline</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <!-- Columns -->
+    <columns name="quote_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider"
+                          xsi:type="string">quote_listing.quote_listing.quote_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>quote_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="quote_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="quote_name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Quote Name</label>
+            </settings>
+        </column>
+        <column name="quote_creation_time" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Quote Creation Time</label>
+            </settings>
+        </column>
+        <column name="quote_update_time" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Last Updated</label>
+            </settings>
+        </column>
+        <column name="quote_author_id" class = "CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\QuoteAuthorName">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Quote Author</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="quote_status">
+            <settings>
+                <options class="CustomerQuote\CustomerQuoteAdminUi\Model\Source\QuoteStatus"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ViewQuoteAction">
+            <settings>
+                <indexField>quote_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
