@@ -5,11 +5,11 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Magento_Backend::content">
                     <resource id="Magento_Backend::content_elements">
-                        <resource id="Training_Feedback::feedback" title="Feedbacks" translate="title"
+                        <resource id="CustomerQuote_CustomerQuoteAdminUi::feedback" title="Feedbacks" translate="title"
                                   sortOrder="15">
-                            <resource id="Training_Feedback::feedback_save" title="Save Feedback"
+                            <resource id="CustomerQuote_CustomerQuoteAdminUi::feedback_save" title="Save Feedback"
                                       translate="title" sortOrder="10" />
-                            <resource id="Training_Feedback::feedback_delete" title="Delete Feedback"
+                            <resource id="CustomerQuote_CustomerQuoteAdminUi::feedback_delete" title="Delete Feedback"
                                       translate="title" sortOrder="20" />
                         </resource>
                     </resource>
