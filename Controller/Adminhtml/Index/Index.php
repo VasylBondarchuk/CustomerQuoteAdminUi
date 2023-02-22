@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -18,7 +18,7 @@ class Index extends Action
     /**
      *
      */
-    const ADMIN_RESOURCE = 'CustomerQuote_CustomerQuoteAdminUi::quote';
+    const ADMIN_RESOURCE = 'Training_CustomerQuoteAdminUi::quote';
 
     /**
      * @var PageFactory
@@ -44,7 +44,7 @@ class Index extends Action
     {
         $resultPage = $this->resultPageFactory->create();
         $resultPage
-            ->setActiveMenu('CustomerQuote_CustomerQuoteAdminUi::quote')
+            ->setActiveMenu('Training_CustomerQuoteAdminUi::quote')
             ->addBreadcrumb(__('Negotiated Quotes'), __('Negotiated Quotes'))
             ->getConfig()->getTitle()->prepend(__('Negotiated Quotes'));
         return $resultPage;

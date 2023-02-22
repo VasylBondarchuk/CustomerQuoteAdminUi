@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel;
+namespace Training\CustomerQuoteAdminUi\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 

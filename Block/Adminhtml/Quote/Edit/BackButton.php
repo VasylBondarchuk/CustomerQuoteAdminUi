@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit;
+namespace Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class BackButton extends GenericButton implements ButtonProviderInterface

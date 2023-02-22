@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column;
+namespace Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;

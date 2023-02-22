@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -10,9 +10,9 @@ use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItemsFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Model\UpdateQuote;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\QuoteItemsFactory;
+use Training\CustomerQuoteAdminUi\Model\UpdateQuote;
 
 /**
  *

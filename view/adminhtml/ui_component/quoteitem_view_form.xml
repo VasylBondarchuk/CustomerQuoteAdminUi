@@ -21,7 +21,7 @@
                 <class>save</class>
                 <label translate="true">Save</label>
             </button>
-            <button name="delete" class="CustomerQuote\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\DeleteButton"/>
+            <button name="delete" class="Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\DeleteButton"/>
         </buttons>
         <namespace>quoteitem_view_form</namespace>
         <deps>
@@ -38,7 +38,7 @@
         <settings>
             <submitUrl path="*/*/save"/>
         </settings>
-        <dataProvider class="CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteItemDataProvider"
+        <dataProvider class="Training\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteItemDataProvider"
                       name="quoteitem_view_form_data_source">
             <settings>
                 <requestFieldName>quote_item_id</requestFieldName>

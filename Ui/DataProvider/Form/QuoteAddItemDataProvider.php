@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form;
+namespace Training\CustomerQuoteAdminUi\Ui\DataProvider\Form;
 
 use Magento\Framework\App\Request\Http;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
 
 
 /**

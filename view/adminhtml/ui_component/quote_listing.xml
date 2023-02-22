@@ -132,7 +132,7 @@
                 <label translate="true">Last Updated</label>
             </settings>
         </column>
-        <column name="quote_author_id" class = "CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\QuoteAuthorName">
+        <column name="quote_author_id" class = "Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\QuoteAuthorName">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Quote Author</label>
@@ -141,13 +141,13 @@
         </column>
         <column name="quote_status">
             <settings>
-                <options class="CustomerQuote\CustomerQuoteAdminUi\Model\Source\QuoteStatus"/>
+                <options class="Training\CustomerQuoteAdminUi\Model\Source\QuoteStatus"/>
                 <filter>select</filter>
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ViewQuoteAction">
+        <actionsColumn name="actions" class="Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ViewQuoteAction">
             <settings>
                 <indexField>quote_id</indexField>
             </settings>

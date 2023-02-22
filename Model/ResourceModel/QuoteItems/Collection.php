@@ -1,10 +1,10 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems;
+namespace Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItems as QuoteItemsModel;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems as QuoteItemsResourceModel;
+use Training\CustomerQuoteAdminUi\Model\QuoteItems as QuoteItemsModel;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems as QuoteItemsResourceModel;
 
 class Collection extends AbstractCollection
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote;
+namespace Training\CustomerQuoteAdminUi\Api\Data\Quote;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 

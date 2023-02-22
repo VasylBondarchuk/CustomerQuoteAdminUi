@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\Grid;
+namespace Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\Grid;
 
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Data\Collection\Db\FetchStrategyInterface as FetchStrategy;
 use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;

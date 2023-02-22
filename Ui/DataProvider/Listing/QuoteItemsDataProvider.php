@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Listing;
+namespace Training\CustomerQuoteAdminUi\Ui\DataProvider\Listing;
 
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\App\Request\Http;
 use Magento\Ui\DataProvider\AbstractDataProvider;

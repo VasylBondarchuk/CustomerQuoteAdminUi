@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
 
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
@@ -12,8 +12,8 @@ use Psr\Log\LoggerInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
 
 class MassDelete extends Action implements HttpPostActionInterface
 {

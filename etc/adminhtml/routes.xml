@@ -2,7 +2,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="quote" frontName="quote">
-            <module name="CustomerQuote_CustomerQuoteAdminUi" before="Magento_Backend"/>
+            <module name="Training_CustomerQuoteAdminUi" before="Magento_Backend"/>
         </route>
     </router>
 </config>

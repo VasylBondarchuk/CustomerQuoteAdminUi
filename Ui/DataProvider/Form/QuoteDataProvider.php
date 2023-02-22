@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form;
+namespace Training\CustomerQuoteAdminUi\Ui\DataProvider\Form;
 
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
 use Psr\Log\LoggerInterface;
 
 /**

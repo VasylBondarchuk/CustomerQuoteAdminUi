@@ -2,4 +2,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'CustomerQuote_CustomerQuoteAdminUi', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Training_CustomerQuoteAdminUi', __DIR__);

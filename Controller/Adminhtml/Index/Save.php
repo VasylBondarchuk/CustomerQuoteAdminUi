@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -10,10 +10,10 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Psr\Log\LoggerInterface;
 use Magento\Catalog\Model\ProductRepository;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItemsFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory as QuoteItemsCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\QuoteItemsFactory;
 
 /**
  *

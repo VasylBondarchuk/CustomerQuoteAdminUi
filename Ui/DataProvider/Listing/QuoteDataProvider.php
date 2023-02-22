@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Listing;
+namespace Training\CustomerQuoteAdminUi\Ui\DataProvider\Listing;
 
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Ui\DataProvider\AbstractDataProvider;

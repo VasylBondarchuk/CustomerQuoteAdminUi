@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="CustomerQuote_CustomerQuoteAdminUi::manage" title="Customer Quote" translate="title" module="CustomerQuote_CustomerQuoteAdminUi" resource="CustomerQuote_CustomerQuoteAdminUi::manage"/>
-        <add id="CustomerQuote_CustomerQuoteAdminUi::quotes_view" title="All Quotes" translate="title" module="CustomerQuote_CustomerQuoteAdminUi" sortOrder="10" parent="CustomerQuote_CustomerQuoteAdminUi::manage" action="quote/index/index" resource="Training_Feedback::feedback_view"/>
-        <add id="CustomerQuote_CustomerQuoteAdminUi::quotes_configs" title="Configuration" translate="title" module="CustomerQuote_CustomerQuoteAdminUi" sortOrder="20" parent="CustomerQuote_CustomerQuoteAdminUi::manage" action="adminhtml/system_config/edit/section/feedback_configuration" resource="TTraining_Feedback::feedback_view"/>
+        <add id="Training_CustomerQuoteAdminUi::manage" title="Customer Quote" translate="title" module="Training_CustomerQuoteAdminUi" resource="Training_CustomerQuoteAdminUi::manage"/>
+        <add id="Training_CustomerQuoteAdminUi::quotes_view" title="All Quotes" translate="title" module="Training_CustomerQuoteAdminUi" sortOrder="10" parent="Training_CustomerQuoteAdminUi::manage" action="quote/index/index" resource="Training_Feedback::feedback_view"/>
+        <add id="Training_CustomerQuoteAdminUi::quotes_configs" title="Configuration" translate="title" module="Training_CustomerQuoteAdminUi" sortOrder="20" parent="Training_CustomerQuoteAdminUi::manage" action="adminhtml/system_config/edit/section/feedback_configuration" resource="TTraining_Feedback::feedback_view"/>
     </menu>
 </config>

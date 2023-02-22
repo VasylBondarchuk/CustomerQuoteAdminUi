@@ -37,7 +37,7 @@
         <settings>
             <submitUrl path="*/*/save"/>
         </settings>
-        <dataProvider class="CustomerQuote\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteAddItemDataProvider"
+        <dataProvider class="Training\CustomerQuoteAdminUi\Ui\DataProvider\Form\QuoteAddItemDataProvider"
                       name="quoteitem_add_form_data_source">
             <settings>
                 <requestFieldName>quote_id</requestFieldName>

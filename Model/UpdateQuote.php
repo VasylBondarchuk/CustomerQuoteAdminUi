@@ -1,10 +1,10 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model;
+namespace Training\CustomerQuoteAdminUi\Model;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\App\RequestInterface;
 

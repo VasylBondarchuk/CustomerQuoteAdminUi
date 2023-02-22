@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Ui\Component\Listing\Column;
+namespace Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column;
 
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Exception\LocalizedException;

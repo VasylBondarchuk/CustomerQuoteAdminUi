@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
 
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
@@ -13,8 +13,8 @@ use Psr\Log\LoggerInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
 
 
 class MassStatus extends Action implements HttpPostActionInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model;
+namespace Training\CustomerQuoteAdminUi\Model;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
@@ -8,12 +8,12 @@ use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote as QuoteResource;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Model\QuoteFactory as QuoteModelFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteSearchResultsInterfaceFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote as QuoteResource;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\QuoteFactory as QuoteModelFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteSearchResultsInterfaceFactory;
 
 
 /**

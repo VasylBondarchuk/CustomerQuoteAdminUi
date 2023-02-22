@@ -1,9 +1,9 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model;
+namespace Training\CustomerQuoteAdminUi\Model;
 
 use Magento\Framework\Model\AbstractExtensibleModel;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
 
 /**
  *

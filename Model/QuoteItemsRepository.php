@@ -1,6 +1,6 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model;
+namespace Training\CustomerQuoteAdminUi\Model;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
@@ -8,12 +8,12 @@ use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems as QuoteItemResource;
-use CustomerQuote\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Model\QuoteItemsFactory as QuoteItemModelFactory;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsSearchResultsInterfaceFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems as QuoteItemResource;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
+use Training\CustomerQuoteAdminUi\Model\QuoteItemsFactory as QuoteItemModelFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsSearchResultsInterfaceFactory;
 
 
 /**
@@ -117,7 +117,7 @@ class QuoteItemsRepository implements QuoteItemsRepositoryInterface
 
     /**
      * @param SearchCriteriaInterface $searchCriteria
-     * @return \CustomerQuote\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsSearchResultsInterface|mixed
+     * @return \Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsSearchResultsInterface|mixed
      */
     public function getList(SearchCriteriaInterface $searchCriteria)
     {

@@ -1,9 +1,9 @@
 <?php
 
-namespace CustomerQuote\CustomerQuoteAdminUi\Model\Source;
+namespace Training\CustomerQuoteAdminUi\Model\Source;
 
 use Magento\Framework\Option\ArrayInterface;
-use CustomerQuote\CustomerQuoteAdminUi\Model\UpdateQuote;
+use Training\CustomerQuoteAdminUi\Model\UpdateQuote;
 
 class QuoteStatus implements ArrayInterface
 {
