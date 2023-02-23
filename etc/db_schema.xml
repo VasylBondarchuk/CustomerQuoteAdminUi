@@ -2,7 +2,7 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
 
-    <table name="negotiable_quotes" resource="default" engine="innodb" comment="Quote's general information">
+    <table name="training_negotiable_quotes" resource="default" engine="innodb" comment="Quote's general information">
         <column xsi:type="smallint" name="quote_id" padding="5" nullable="false" identity="true"
                 comment="Quote ID"/>
         <column xsi:type="varchar" name="quote_name" nullable="false" length="255"
@@ -22,7 +22,7 @@
         </constraint>
     </table>
 
-    <table name="negotiable_quote_items" resource="default" engine="innodb" comment="Quote's products info">
+    <table name="training_negotiable_quote_items" resource="default" engine="innodb" comment="Quote's products info">
         <column xsi:type="smallint" name="quote_item_id" padding="5" nullable="false" identity="true"
                 comment="Quote Item ID"/>
         <column xsi:type="smallint" name="product_id" padding="5" nullable="false"

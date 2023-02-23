@@ -15,5 +15,30 @@
         "constraint": {
             "PRIMARY": true
         }
+    },
+    "training_negotiable_quotes": {
+        "column": {
+            "quote_id": true,
+            "quote_name": true,
+            "quote_creation_time": true,
+            "quote_update_time": true,
+            "quote_author_id": true,
+            "quote_status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "training_negotiable_quote_items": {
+        "column": {
+            "quote_item_id": true,
+            "product_id": true,
+            "quote_id": true,
+            "proposed_qty": true,
+            "proposed_price": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
     }
 }
