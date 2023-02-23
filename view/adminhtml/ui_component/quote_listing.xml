@@ -19,7 +19,7 @@
             <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">quote_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">quote_id</argument>
-            <argument name="requestFieldName" xsi:type="string">quote_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
@@ -50,40 +50,61 @@
                 </item>
             </argument>
         </exportButton>
-        <filters name="listing_filters">
-            <settings>
-                <templates>
-                    <filters>
-                        <select>
-                            <param name="template"
+                <filters name="listing_filters">
+        <settings>
+            <templates>
+                <filters>
+                    <select>
+                        <param name="template"
                                    xsi:type="string">ui/grid/filters/elements/ui-select</param>
-                            <param name="component"
+                        <param name="component"
                                    xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
-                        </select>
-                    </filters>
-                </templates>
+                    </select>
+                </filters>
+            </templates>
+        </settings>
+    </filters>
+    <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+        <action name="delete">
+            <settings>
+                <confirm>
+                    <message translate="true">Are you sure you want to delete the selected items?</message>
+                    <title translate="true">Delete items</title>
+                </confirm>
+                <url path="quote/index/massDelete"/>
+                <type>delete</type>
+                <label translate="true">Delete</label>
             </settings>
-        </filters>
-        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
-            <action name="status">
-                <settings>
-                    <type>status</type>
-                    <label translate="true">Change status</label>
-                    <actions>
-                        <action name="0">
-                            <type>status</type>
-                            <label translate="true">Decline</label>
-                            <url path="quote/index/massStatus">
-                                <param name="status">Decline</param>
-                            </url>
-                        </action>
-                    </actions>
-                </settings>
-            </action>
-        </massaction>
-        <paging name="listing_paging"/>
+        </action>
+
+        <action name="status">
+            <settings>
+                <type>status</type>
+                <label translate="true">Change status</label>
+                <actions>
+                    <action name="0">
+                        <type>active</type>
+                        <label translate="true">Published</label>
+                        <url path="quote/index/massStatus">
+                            <param name="is_active">1</param>
+                        </url>
+                    </action>
+                    <action name="1">
+                        <type>not_active</type>
+                        <label translate="true">Not Published</label>
+                        <url path="quote/index/massStatus">
+                            <param name="is_active">0</param>
+                        </url>
+                    </action>
+                </actions>
+            </settings>
+        </action>
+    </massaction>
+    <paging name="listing_paging"/>
     </listingToolbar>
+
     <!-- Columns -->
+
     <columns name="quote_columns">
         <settings>
             <childDefaults>
@@ -98,11 +119,13 @@
                 </param>
             </childDefaults>
         </settings>
+
         <selectionsColumn name="ids">
             <settings>
                 <indexField>quote_id</indexField>
             </settings>
         </selectionsColumn>
+
         <column name="quote_id">
             <settings>
                 <filter>textRange</filter>
@@ -110,12 +133,14 @@
                 <sorting>asc</sorting>
             </settings>
         </column>
+
         <column name="quote_name">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Quote Name</label>
             </settings>
         </column>
+
         <column name="quote_creation_time" class="Magento\Ui\Component\Listing\Columns\Date"
                 component="Magento_Ui/js/grid/columns/date">
             <settings>
@@ -124,6 +149,16 @@
                 <label translate="true">Quote Creation Time</label>
             </settings>
         </column>
+
+        <column name="quote_update_time" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Quote Update Time</label>
+            </settings>
+        </column>
+
         <column name="quote_update_time" class="Magento\Ui\Component\Listing\Columns\Date"
                 component="Magento_Ui/js/grid/columns/date">
             <settings>
@@ -132,6 +167,7 @@
                 <label translate="true">Last Updated</label>
             </settings>
         </column>
+
         <column name="quote_author_id" class = "Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\QuoteAuthorName">
             <settings>
                 <filter>text</filter>
@@ -139,18 +175,19 @@
                 <sorting>asc</sorting>
             </settings>
         </column>
+
         <column name="quote_status">
             <settings>
-                <options class="Training\CustomerQuoteAdminUi\Model\Source\QuoteStatus"/>
-                <filter>select</filter>
-                <dataType>select</dataType>
-                <label translate="true">Status</label>
+                <filter>text</filter>
+                <label translate="true">Quote Status</label>
             </settings>
         </column>
+
         <actionsColumn name="actions" class="Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ViewQuoteAction">
             <settings>
                 <indexField>quote_id</indexField>
             </settings>
         </actionsColumn>
+
     </columns>
 </listing>

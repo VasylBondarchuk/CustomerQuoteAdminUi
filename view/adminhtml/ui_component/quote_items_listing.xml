@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider"
+                  xsi:type="string">quote_items_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>quote_items_columns</spinner>
+        <deps>
+            <dep>quote_items_listing.quote_items_listing_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="add_by_sku" class="Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\AddBySkuButton"/>
+        </buttons>
+    </settings>
+
+    <dataSource name="quote_items_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">quote_items_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">quote_item_id</argument>
+            <argument name="requestFieldName" xsi:type="string">quote_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="filter_url_params" xsi:type="array">
+                        <item name="quote_id" xsi:type="string">*</item>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">quote_item_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template"
+                                   xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component"
+                                   xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <!-- Columns -->
+
+    <columns name="quote_items_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider"
+                          xsi:type="string">quote_items_listing.quote_items_listing.quote_items_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+
+
+        <column name="quote_item_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+
+        <column name="product_sku" class = 'Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductSku'>
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product SKU</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="product_id" class = 'Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\ProductName'>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Product Name</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="proposed_qty">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Proposed Qty</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="proposed_price" class = 'Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\CurrencySymbol'>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Proposed price</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Training\CustomerQuoteAdminUi\Ui\Component\Listing\Column\EditQuoteItemAction">
+            <settings>
+                <indexField>quote_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

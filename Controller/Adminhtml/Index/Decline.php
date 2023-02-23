@@ -7,7 +7,6 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
-
 use Training\CustomerQuoteAdminUi\Model\UpdateQuote;
 
 /**

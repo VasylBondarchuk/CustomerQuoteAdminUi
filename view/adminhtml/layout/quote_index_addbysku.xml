@@ -4,7 +4,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="quoteitem_add_form"/>
+            <uiComponent name="quoteitem_view_form"/>
         </referenceContainer>
     </body>
 </page>

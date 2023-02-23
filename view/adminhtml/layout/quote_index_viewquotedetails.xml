@@ -4,12 +4,11 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="quote_view_form"/>
+            <!--<uiComponent name="quote_view_form"/>-->
             <uiComponent name="quote_items_listing"/>
         </referenceContainer>
     </body>
 </page>
-
 
 
 
