@@ -26,7 +26,7 @@ class Collection extends SearchResult
         FetchStrategy $fetchStrategy,
         EventManager $eventManager,
         Http $request,
-        string $mainTable = "negotiable_quote_items",
+        string $mainTable = "training_negotiable_quote_items",
         $resourceModel = null,
         $identifierName = null,
         $connectionName = null

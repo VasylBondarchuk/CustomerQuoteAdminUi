@@ -23,7 +23,7 @@
     <virtualType name="Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">negotiable_quotes</argument>
+            <argument name="mainTable" xsi:type="string">training_negotiable_quotes</argument>
             <argument name="resourceModel" xsi:type="string">Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote</argument>
         </arguments>
     </virtualType>

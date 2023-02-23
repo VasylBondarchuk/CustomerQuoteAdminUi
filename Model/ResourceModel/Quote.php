@@ -14,6 +14,6 @@ class Quote extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('negotiable_quotes', 'quote_id');
+        $this->_init('training_negotiable_quotes', 'quote_id');
     }
 }
