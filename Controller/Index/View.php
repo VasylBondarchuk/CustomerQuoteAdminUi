@@ -1,52 +1,62 @@
 <?php
 
-namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
+declare(strict_types=1);
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
+namespace Training\CustomerQuoteAdminUi\Controller\Index;
+
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
-
+use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
 
 /**
- *
+ * View a negot. quote
  */
-class Index extends Action
-{
-    /**
-     *
-     */
-    const ADMIN_RESOURCE = 'Training_CustomerQuoteAdminUi::quote';
+class View implements HttpGetActionInterface {
+
+    const REQUEST_FIELD_NAME = 'quote_id';
 
     /**
      * @var PageFactory
      */
-    private PageFactory $resultPageFactory;
+    private PageFactory $pageFactory;
 
     /**
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
+     * @var RequestInterface
      */
+    private RequestInterface $request;
+
+    /**
+     * @var RequestInterface
+     */
+    private QuoteRepositoryInterface $quoteRepository;
+
     public function __construct(
-        Context                   $context,
-        PageFactory               $resultPageFactory
+            PageFactory $pageFactory,
+            RequestInterface $request,
+            QuoteRepositoryInterface $quoteRepository
     ) {
-        $this->resultPageFactory = $resultPageFactory;
-        parent::__construct($context);
+        $this->pageFactory = $pageFactory;
+        $this->request = $request;
+        $this->quoteRepository = $quoteRepository;
     }
 
     /**
      * @return ResponseInterface|ResultInterface|Page
      */
-    public function execute()
-    {
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage
-            ->setActiveMenu('Training_CustomerQuoteAdminUi::quote')
-            ->addBreadcrumb(__('Negotiated Quotes'), __('Negotiated Quotes'))
-            ->getConfig()->getTitle()->prepend(__('Negotiated Quotes'));
-        return $resultPage;
+    public function execute() {
+        $quoteId = (int)($this->request->get(self::REQUEST_FIELD_NAME));
+        $quoteName = $this->getQuoteNameById($quoteId);
+        $page = $this->pageFactory->create();
+        $page->getConfig()->getTitle()->prepend(__('Quote %1', $quoteName));
+        return $page;
     }
+    
+    private function getQuoteNameById(int $quoteId) : ?string{
+        return $this->quoteRepository->getById($quoteId)->getQuoteName();
+    }
+
 }

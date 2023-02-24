@@ -59,9 +59,8 @@ class ViewQuoteDetails extends Action
         }
 
         $resultPage = $this->resultPageFactory->create();
-
         $quoteId = $this->updateQuote->getQuoteIdFromUrl();
-        $resultPage->getConfig()->getTitle()->prepend(__("Quote # $quoteId"));
+        $resultPage->getConfig()->getTitle()->prepend(__("Quote #%1",$quoteId));
         return $resultPage;
     }
 }

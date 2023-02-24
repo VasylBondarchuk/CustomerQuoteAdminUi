@@ -28,6 +28,10 @@ class UpdateQuote
      */
     private QuoteRepositoryInterface $quoteRepository;
 
+    /**
+     * 
+     * @var QuoteItemsRepositoryInterface
+     */
     private QuoteItemsRepositoryInterface $quoteItemsRepository;
 
     /**
@@ -146,8 +150,8 @@ class UpdateQuote
         return $quoteModelStatus === UpdateQuote::QUOTE_STATUS_OPEN;
     }
 
-    public function getQuoteIdByQuoteItemId(): bool
-    {
-        return $this->quoteItemsRepository->getById($this->getQuoteItemIdFromUrl())->getQuoteId();
+    public function getQuoteIdByQuoteItemId(): int
+    {        
+        return $this->quoteItemsRepository->getById((int)$this->getQuoteItemIdFromUrl())->getQuoteId();
     }
 }

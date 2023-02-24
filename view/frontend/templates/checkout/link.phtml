@@ -1,0 +1,51 @@
+<a class="quote_link" href="<?= $this->escapeUrl($block->getRequestQuoteUrl() . '?quote=on') ?>">
+    <span>
+        <?= $block->escapeHtml(__('Request Custom Quote')) ?>
+    </span>
+</a>
+<br><br>
+
+<?php if (isset($_GET['quote']) &&  $_GET['quote'] == 'on') : ?> 
+
+<form class="quote_details"
+      action="<?= $block->escapeUrl($block->getActionUrl()) ?>"
+      id="feedback-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset"> 
+        <div class="field name required">
+            <label class="label" for="quote_name">
+                <span><?= $block->escapeHtml(__('Quote Name')) ?></span>
+            </label>
+            <div class="control">
+                <input name="quote_name" id="author_name"
+                       title="<?= $block->escapeHtmlAttr(__('Name')) ?>" 
+                       class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        
+        <div class="field comment">
+            <label class="label" for="comment">
+                <span><?= $block->escapeHtml(__('Leave your comment here')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="message" id="message"
+                          title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
+                          class="input-text" cols="5" rows="3" data-validate="{required:true}">
+                </textarea>
+            </div>
+        </div>        
+
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                    class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit Quote')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<?php endif; ?>

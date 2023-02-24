@@ -7,7 +7,7 @@ namespace Training\CustomerQuoteAdminUi\Api\Data\Quote;
  */
 interface QuoteInterface
 {
-    /**#@+
+    /*
      * Constants defined for keys of the data array. Identical to the name of the getter in snake case
      */
     const QUOTE_ID = 'quote_id';
@@ -16,6 +16,26 @@ interface QuoteInterface
     const QUOTE_UPDATE_TIME = 'quote_update_time';
     const QUOTE_AUTHOR_ID = 'quote_author_id';
     const QUOTE_STATUS = 'quote_status';
+    
+    const QUOTE_STATUS_NEW = 'new';
+    const QUOTE_STATUS_OPEN = 'open';
+    const QUOTE_STATUS_SUBMITTED = 'submitted';
+    const QUOTE_STATUS_CLIENT_REVIEWED = 'client_reviewed';
+    const QUOTE_STATUS_UPDATED = 'updated';
+    const QUOTE_STATUS_ORDERED = 'ordered';
+    const QUOTE_STATUS_CLOSED = 'closed';
+    const QUOTE_STATUS_DECLINED = 'declined';
+    
+    const ORDER_STATUS_LABEL = [
+        self::QUOTE_STATUS_NEW => 'New',
+        self::QUOTE_STATUS_OPEN=> 'Open',
+        self::QUOTE_STATUS_SUBMITTED => 'Submitted',
+        self::QUOTE_STATUS_CLIENT_REVIEWED => 'Client Reviewed',
+        self::QUOTE_STATUS_UPDATED => 'Update',
+        self::QUOTE_STATUS_ORDERED => 'Ordered',
+        self::QUOTE_STATUS_CLOSED => 'closed',
+        self::QUOTE_STATUS_DECLINED => 'declined',
+    ];
 
     /**
      * @return int|null
@@ -35,14 +55,19 @@ interface QuoteInterface
     /**
      * @return int|null
      */
-    public function getQuoteAuthorId(): ?int;
+    public function getQuoteAuthorId(): ?int; 
 
     /**
      * @return string|null
      */
     public function getQuoteStatus(): ?string;
 
-
+    /**
+     * 
+     * @return string
+     */
+    public function getQuoteStatusLabel(): string;        
+    
     /**
      * @param int $quoteId
      * @return QuoteInterface

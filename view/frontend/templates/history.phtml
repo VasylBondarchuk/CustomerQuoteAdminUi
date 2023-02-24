@@ -1,0 +1,32 @@
+<?php $quotes = $block->getCollection(); ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Quotes')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Quote Name')) ?></th>
+                    <th scope="col" class="col date"><?= $block->escapeHtml(__('Created')) ?></th>                    
+                    <th scope="col" class="col total"><?= $block->escapeHtml(__('Created By')) ?></th>
+                    <th scope="col" class="col status"><?= $block->escapeHtml(__('Status')) ?></th>
+                    <th scope="col" class="col actions"><?= $block->escapeHtml(__('Last Updated')) ?></th>
+                    <th scope="col" class="col actions"><?= $block->escapeHtml(__('Actions')) ?></th> 
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($quotes as $quote) : ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Quote Name')) ?>" class="col id"><?= $block->escapeHtml($quote->getQuoteName()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Created')) ?>" class="col date"><?= $block->formatDate($quote->getQuoteCreationTime()) ?></td>                        
+                        <td data-th="<?= $block->escapeHtml(__('Created By')) ?>" class="col name"><?= $block->escapeHtml($block->getCustomerFullNameById()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col total"><?= $block->escapeHtml($quote->getQuoteStatus()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Last Updated')) ?>" class="col update"><?= $block->formatDate($quote->getQuoteUpdateTime()) ?></td>
+                         <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                            <a href="<?= $block->getViewUrl($quote) ?>" class="action view">
+                                <span><?= __('View Quote') ?></span>
+                            </a>                           
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div> 
