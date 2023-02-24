@@ -23,7 +23,7 @@ use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
 /**
  * Saves new feedback
  */
-class Save implements HttpGetActionInterface,HttpPostActionInterface {
+class Save implements HttpGetActionInterface, HttpPostActionInterface {
 
     /**
      * @var ManagerInterface
@@ -46,6 +46,10 @@ class Save implements HttpGetActionInterface,HttpPostActionInterface {
      */
     private RequestInterface $request;
     
+    /**
+     * 
+     * @var UrlInterface
+     */
     private UrlInterface $urlInterface;
 
     /**
@@ -124,26 +128,13 @@ class Save implements HttpGetActionInterface,HttpPostActionInterface {
      */
     public function execute() {
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setPath('*/*/index');
+        $resultRedirect->setPath('*/*/history');
         $post = $this->request->getPostValue();
-        
-        if($post){
+        if ($post) {
             try {
-                // create quote model instance
-                $quote = $this->quoteFactory->create();                
-                $this->setDataToQuoteModel($quote, $post);
-                $this->quoteRepository->save($quote); 
-                
-                foreach($this->checkoutSession->getQuote()->getAllVisibleItems() as $product){            
-                    $quoteItem = $this->quoteItemsFactory->create();
-                    $quoteItem->setQuoteId($quote->getQuoteId());
-                    $quoteItem->setProductId((int)$product->getProductId());
-                    $quoteItem->setProposedQty($product->getQty());
-                    $quoteItem->setProposedPrice((float)$product->getBasePrice());
-                    $this->quoteItemsRepository->save($quoteItem);
-                }            
-                                
-                               
+                $quote = $this->quoteFactory->create();
+                $this->saveQuote($quote, $post);
+                $this->saveQuoteItems($quote);
                 $this->messageManager->addSuccessMessage(
                         __('Thank you for submitting your quote.')
                 );
@@ -151,26 +142,38 @@ class Save implements HttpGetActionInterface,HttpPostActionInterface {
                 $this->messageManager->addErrorMessage(
                         __('An error occurred while processing your form. Please try again later.')
                 );
-                $resultRedirect->setPath('quote/index/index/');
+                $resultRedirect->setPath('quote/index/history');
             }
         }
         return $resultRedirect;
     }
 
-    /**
-     * 
-     * @param QuoteInterface $quote
-     * @return void
-     */
-    private function setDataToQuoteModel(QuoteInterface $quote , array $post): void {
+    private function saveQuote(QuoteInterface $quote, array $post) {
         $quote->setQuoteName($post['quote_name'])
                 ->setQuoteCreationTime(date("Y-m-d H:i:s"))
                 ->setQuoteUpdateTime(date("Y-m-d H:i:s"))
                 ->setQuoteAuthorId($this->getCustomerId())
                 ->setQuoteStatus('New');
+        $this->quoteRepository->save($quote);
+    }
+
+    private function saveQuoteItems(QuoteInterface $quote) {
+        foreach ($this->getProductsInQuote() as $product) {
+            $quoteItem = $this->quoteItemsFactory->create();
+            $quoteItem->setQuoteId($quote->getQuoteId());
+            $quoteItem->setProductId((int) $product->getProductId());
+            $quoteItem->setProposedQty($product->getQty());
+            $quoteItem->setProposedPrice((float) $product->getBasePrice());
+            $this->quoteItemsRepository->save($quoteItem);
+        }
     }
     
     private function getCustomerId() : int{
         return (int)$this->customerSession->getCustomerId();
     }
+    
+    private function getProductsInQuote() : array {
+        return $this->checkoutSession->getQuote()->getAllVisibleItems();
+    }
+
 }

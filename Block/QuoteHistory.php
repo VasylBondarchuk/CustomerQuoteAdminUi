@@ -43,8 +43,16 @@ class QuoteHistory extends \Magento\Framework\View\Element\Template
      */
     private RequestInterface $request;
     
+    /**
+     * 
+     * @var CustomerSession
+     */
     private CustomerSession $customerSession;
     
+    /**
+     * 
+     * @var CustomerRepositoryInterface
+     */
     private CustomerRepositoryInterface $customer;
     
     public function __construct(
