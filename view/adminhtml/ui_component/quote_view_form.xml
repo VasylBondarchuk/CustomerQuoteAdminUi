@@ -6,7 +6,7 @@
             <item name="provider" xsi:type="string">quote_view_form.quote_view_form_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Quote</item>
-        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>        
     </argument>
     <settings>
         <namespace>quote_view_form</namespace>
@@ -18,7 +18,7 @@
             <button name="back" class="Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\BackButton"/>
             <button name="decline" class="Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\DeclineButton"/>
             <button name="send" class="Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit\SendButton"/>
-        </buttons>
+        </buttons>        
     </settings>
 
     <dataSource name="quote_view_form_data_source">
@@ -41,7 +41,7 @@
 
     <fieldset name="general">
         <settings>
-            <label translate="true">Quote general info</label>
+            <label translate="true">Quote general info</label>            
         </settings>
 
         <field name="quote_name" formElement="input" sortOrder="10">
@@ -95,12 +95,11 @@
                 <dataScope>quote_author_id</dataScope>
             </settings>
         </field>
-
     </fieldset>
 
     <fieldset name="quote_items_details">
-    <settings>
-        <label translate="true">Quote items details</label>
-    </settings>
+        <settings>
+            <label translate="true">Quote items details</label>
+        </settings>
     </fieldset>
 </form>

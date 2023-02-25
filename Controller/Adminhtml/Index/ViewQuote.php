@@ -14,7 +14,7 @@ use Training\CustomerQuoteAdminUi\Model\UpdateQuote;
 /**
  *
  */
-class ViewQuoteDetails extends Action
+class ViewQuote extends Action
 {
     /**
      * @var PageFactory

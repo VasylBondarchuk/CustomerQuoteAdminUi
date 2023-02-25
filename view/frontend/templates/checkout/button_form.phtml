@@ -1,14 +1,13 @@
-<!-- Display link to display a quote form if requested  -->
-<a class="quote_link" href="<?= $this->escapeUrl($block->getRequestQuoteUrl()) ?>">
-    <span>
-        <?= $block->escapeHtml(__('Request a Custom Quote')) ?>
-    </span>
-</a>
-<br><br>
-
-<!-- Display a quote form if requested  -->
-<?php if ($block->isQuoteRequested()) : ?> 
-    <form class="quote_details"
+<div data-bind="mageInit: {
+        'Magento_Ui/js/modal/modal':{
+            'type': 'popup',
+            'title': 'Request a Quote',
+            'trigger': '[data-trigger=trigger]',
+            'responsive': true,
+             buttons: []
+        }}">
+    <div class="content">
+        <form class="quote_details"
           action="<?= $block->escapeUrl($block->getActionUrl()) ?>"
           id="feedback-form"
           method="post"
@@ -20,31 +19,40 @@
                     <span><?= $block->escapeHtml(__('Quote Name')) ?></span>
                 </label>
                 <div class="control">
-                    <input name="quote_name" id="author_name"
-                           title="<?= $block->escapeHtmlAttr(__('Name')) ?>" 
+                    <input name="quote_name" id="quote_name"
+                           title="<?= $block->escapeHtmlAttr(__('Quote Name')) ?>" 
                            class="input-text" type="text" data-validate="{required:true}"/>
                 </div>
             </div>        
-            <div class="field comment">
+            <div class="field quote required">
                 <label class="label" for="comment">
                     <span><?= $block->escapeHtml(__('Leave your comment here')) ?></span>
                 </label>
                 <div class="control">
-                    <textarea name="message" id="message"
-                              title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>"
-                              class="input-text" cols="5" rows="3" data-validate="{required:false}">
+                    <textarea name="comment" id="comment"
+                              title="<?= $block->escapeHtmlAttr(__('Leave your comment here')) ?>"
+                              class="input-text" cols="3" rows="3" data-validate="{required:true}">
                     </textarea>
                 </div>
             </div> 
         </fieldset>
+            
         <div class="actions-toolbar">
             <div class="primary">
                 <input type="hidden" name="hideit" id="hideit" value="" />
                 <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
                         class="action submit primary">
-                    <span><?= $block->escapeHtml(__('Submit Quote')) ?></span>
+                    <span><?= $block->escapeHtml(__('Submit a Quote')) ?></span>
                 </button>
             </div>
         </div>
+            
     </form>
-<?php endif; ?>
+    </div>
+</div>
+
+<div id="click-section" class="click-section">
+    <button type="button" class="action primary" data-trigger="trigger">
+        <span data-bind="i18n: 'Request a Quote'"></span>
+    </button>
+</div>

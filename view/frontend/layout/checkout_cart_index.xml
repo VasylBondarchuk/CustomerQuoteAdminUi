@@ -8,7 +8,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="checkout.cart.methods">
-            <block class="Training\CustomerQuoteAdminUi\Block\Checkout\Link" name="checkout.cart.methods.customquote" template="Training_CustomerQuoteAdminUi::checkout/link.phtml"/>
+            <block class="Training\CustomerQuoteAdminUi\Block\Checkout\RequestQuote"
+                   name="checkout.cart.methods.customquote"
+                   template="Training_CustomerQuoteAdminUi::checkout/button_form.phtml"/>
         </referenceContainer>
     </body>
 </page>

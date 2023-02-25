@@ -49,7 +49,7 @@ class Open extends Action
             $this->logger->error($exception->getLogMessage());
         }
         return $resultRedirect->setPath(
-            'quote/index/viewquotedetails/',
+            'quote/index/viewquote/',
             ['quote_id' => $this->updateQuote->getQuoteIdFromUrl()]);
     }
 }
