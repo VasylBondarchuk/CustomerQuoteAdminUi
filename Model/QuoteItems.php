@@ -21,25 +21,25 @@ class QuoteItems extends AbstractExtensibleModel implements QuoteItemsInterface
     /**
      * @return int|null
      */
-    public function getQuoteiItemId(): ?int
+    public function getQuoteiItemId(): int
     {
-        return $this->getData(self::QUOTE_ITEM_ID);
+        return (int)$this->getData(self::QUOTE_ITEM_ID);
     }
 
     /**
      * @return int|null
      */
-    public function getProductId(): ?int
+    public function getProductId(): int
     {
-        return $this->getData(self::PRODUCT_ID);
+        return (int)$this->getData(self::PRODUCT_ID);
     }
 
     /**
      * @return int|null
      */
-    public function getQuoteId(): ?int
+    public function getQuoteId(): int
     {
-        return $this->getData(self::QUOTE_ID);
+        return (int)$this->getData(self::QUOTE_ID);
     }
 
     /**
