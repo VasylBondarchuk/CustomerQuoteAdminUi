@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Training\CustomerQuoteAdminUi\Model;
 
@@ -22,9 +23,9 @@ class Quote extends AbstractExtensibleModel implements QuoteInterface
     /**
      * @return int|null
      */
-    public function getQuoteId(): ?int
+    public function getQuoteId(): int
     {
-        return $this->getData(self::QUOTE_ID);
+        return (int)$this->getData(self::QUOTE_ID);
     }
 
     /**
@@ -34,6 +35,15 @@ class Quote extends AbstractExtensibleModel implements QuoteInterface
     {
         return (string)$this->getData(self::QUOTE_NAME);
     }
+    
+    /**
+     * @return string
+     */
+    public function getQuoteComment(): string
+    {
+        return (string)$this->getData(self::QUOTE_COMMENT);
+    }
+    
 
     /**
      * @return string
@@ -94,7 +104,16 @@ class Quote extends AbstractExtensibleModel implements QuoteInterface
     {
         return $this->setData(self::QUOTE_NAME, $quoteName);
     }
-
+        
+    /**
+     * 
+     * @param string $quoteComment
+     * @return QuoteInterface
+     */
+    public function setQuoteComment(string $quoteComment): QuoteInterface
+    {
+        return $this->setData(self::QUOTE_COMMENT, $quoteComment);
+    }
     /**
      * @param string $quoteCreationTime
      * @return QuoteInterface

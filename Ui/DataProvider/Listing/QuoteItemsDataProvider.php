@@ -7,7 +7,6 @@ use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFacto
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\App\Request\Http;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Magento\Framework\Pricing\Helper\Data as PriceHelper;
 
 /**
  * Data provider for quote's items form

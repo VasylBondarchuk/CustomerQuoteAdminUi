@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Training\CustomerQuoteAdminUi\Api\Data\Quote;
 
@@ -12,6 +13,7 @@ interface QuoteInterface
      */
     const QUOTE_ID = 'quote_id';
     const QUOTE_NAME = 'quote_name';
+    const QUOTE_COMMENT = 'quote_comment';
     const QUOTE_CREATION_TIME = 'quote_creation_time';
     const QUOTE_UPDATE_TIME = 'quote_update_time';
     const QUOTE_AUTHOR_ID = 'quote_author_id';
@@ -46,6 +48,11 @@ interface QuoteInterface
      * @return string
      */
     public function getQuoteName(): string;
+    
+    /**
+     * @return string
+     */
+    public function getQuoteComment(): string;
 
     /**
      * @return string|null
@@ -79,6 +86,13 @@ interface QuoteInterface
      * @return QuoteInterface
      */
     public function setQuoteName(string $quoteName): QuoteInterface;
+    
+    /**
+     * 
+     * @param string $quoteName
+     * @return QuoteInterface
+     */
+    public function setQuoteComment(string $quoteName): QuoteInterface;
 
     /**
      * @param string $quoteCreationTime

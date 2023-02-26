@@ -69,6 +69,20 @@
                 <dataScope>quote_status</dataScope>
             </settings>
         </field>
+        
+            <field name="quote_status" formElement="input" sortOrder="15">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Quote status</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Quote Comment</label>
+                <dataScope>quote_comment</dataScope>
+            </settings>
+        </field>    
+        
 
         <field name="quote_creation_time" formElement="input" sortOrder="20">
             <argument name="data" xsi:type="array">

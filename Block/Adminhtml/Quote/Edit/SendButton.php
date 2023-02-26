@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace Training\CustomerQuoteAdminUi\Block\Adminhtml\Quote\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
-use Magento\Ui\Component\Control\Container;
 
 class SendButton extends GenericButton implements ButtonProviderInterface
 {

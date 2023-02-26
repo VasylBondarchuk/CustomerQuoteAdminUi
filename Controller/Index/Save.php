@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Training\CustomerQuoteAdminUi\Controller\Index;
@@ -45,7 +44,7 @@ class Save implements HttpGetActionInterface, HttpPostActionInterface {
      * @var RequestInterface
      */
     private RequestInterface $request;
-    
+
     /**
      * 
      * @var UrlInterface
@@ -132,9 +131,11 @@ class Save implements HttpGetActionInterface, HttpPostActionInterface {
         $post = $this->request->getPostValue();
         if ($post) {
             try {
+                // Save data
                 $quote = $this->quoteFactory->create();
                 $this->saveQuote($quote, $post);
                 $this->saveQuoteItems($quote);
+
                 $this->messageManager->addSuccessMessage(
                         __('Thank you for submitting your quote.')
                 );
@@ -149,11 +150,10 @@ class Save implements HttpGetActionInterface, HttpPostActionInterface {
     }
 
     private function saveQuote(QuoteInterface $quote, array $post) {
-        $quote->setQuoteName($post['quote_name'])
-                ->setQuoteCreationTime(date("Y-m-d H:i:s"))
-                ->setQuoteUpdateTime(date("Y-m-d H:i:s"))
-                ->setQuoteAuthorId($this->getCustomerId())
-                ->setQuoteStatus('New');
+        $quote->setData($post)
+              ->setQuoteUpdateTime(date("Y-m-d H:i:s"))
+              ->setQuoteAuthorId($this->getCustomerId())
+              ->setQuoteStatus('New');
         $this->quoteRepository->save($quote);
     }
 
@@ -167,12 +167,12 @@ class Save implements HttpGetActionInterface, HttpPostActionInterface {
             $this->quoteItemsRepository->save($quoteItem);
         }
     }
-    
-    private function getCustomerId() : int{
-        return (int)$this->customerSession->getCustomerId();
+
+    private function getCustomerId(): int {
+        return (int) $this->customerSession->getCustomerId();
     }
-    
-    private function getProductsInQuote() : array {
+
+    private function getProductsInQuote(): array {
         return $this->checkoutSession->getQuote()->getAllVisibleItems();
     }
 

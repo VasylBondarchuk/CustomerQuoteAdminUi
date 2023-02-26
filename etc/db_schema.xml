@@ -7,6 +7,8 @@
                 comment="Quote ID"/>
         <column xsi:type="varchar" name="quote_name" nullable="false" length="255"
                 comment="Quote Name"/>
+        <column xsi:type="mediumtext" name="quote_comment" nullable="false"
+                comment="Quote Comment"/>
         <column xsi:type="timestamp" name="quote_creation_time" on_update="false" nullable="false"
                 default="CURRENT_TIMESTAMP"
                 comment="Quote Creation Time"/>
