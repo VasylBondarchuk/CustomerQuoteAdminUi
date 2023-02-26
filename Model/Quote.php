@@ -74,7 +74,7 @@ class Quote extends AbstractExtensibleModel implements QuoteInterface
      */
     public function getQuoteStatus(): string
     {
-        return $this->getData(self::QUOTE_STATUS);
+        return (string)$this->getData(self::QUOTE_STATUS);
     }
     
     

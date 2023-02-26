@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Training\CustomerQuoteAdminUi\Controller\Adminhtml\Index;
@@ -13,6 +14,7 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Training\CustomerQuoteAdminUi\Model\UpdateQuote;
 use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
  *
@@ -75,31 +77,32 @@ class ViewQuote extends Action {
      * @throws LocalizedException
      */
     public function execute() {
-        $quoteId = (int) $this->request->getParam('quote_id');
-        if (!$this->isExistingQuote($quoteId)) {
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setPath('quote/index/index/');
-            return $resultRedirect;
-        }
-        if (!$this->updateQuote->isQuoteOpenForEditing($this->updateQuote->getQuoteIdFromUrl())) {
-            $this->messageManager->addErrorMessage(__('This quote is currently locked for editing.
+        $quoteId = (int) $this->request->getParam('quote_id');        
+        if ($this->isExistingQuote($quoteId)) {            
+            if (!$this->updateQuote->isQuoteOpenForEditing($this->updateQuote->getQuoteIdFromUrl())) {
+                $this->messageManager->addErrorMessage(__('This quote is currently locked for editing.
                 It will become available once released by the buyer.'));
+            }
+            $resultPage = $this->resultPageFactory->create();
+            $resultPage->getConfig()->getTitle()->prepend(__("Quote #%1", $quoteId));
+            return $resultPage;
         }
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__("Quote #%1", $quoteId));
-        return $resultPage;
+        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+        $resultRedirect->setPath('quote/index/index/');
+        return $resultRedirect;
     }
 
-    private function isExistingQuote(int $quoteId): bool {        
+    private function isExistingQuote(int $quoteId) {
+        
         try {
             $this->quoteRepository->getById($quoteId);
             $existing = true;
-        } catch (NoSuchEntityException $e) {
-            $this->logger->error($e->getLogMessage());
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setPath('quote/index/index/');
-            $existing = false;            
+        } catch (NoSuchEntityException $e) {            
+            $existing = false;
+            $this->messageManager->addErrorMessage(__($e->getLogMessage()));
+            $this->logger->error($e->getLogMessage());            
         }
         return $existing;
-    }
+    } 
+
 }

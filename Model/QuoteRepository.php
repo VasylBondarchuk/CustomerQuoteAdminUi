@@ -91,7 +91,7 @@ class QuoteRepository implements QuoteRepositoryInterface
      * @return QuoteInterface
      * @throws NoSuchEntityException
      */
-    public function getById(int $quoteId): QuoteInterface
+    public function getById(int $quoteId)
     {
         $quote = $this->quoteFactory->create();
         $this->resource->load($quote, $quoteId);
