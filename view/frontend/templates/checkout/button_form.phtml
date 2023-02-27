@@ -14,24 +14,29 @@
           data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
           data-mage-init='{"validation":{}}'>
         <fieldset class="fieldset"> 
-            <div class="field name required">
+           <div class="field required">
                 <label class="label" for="quote_name">
-                    <span><?= $block->escapeHtml(__('Quote Name')) ?></span>
+                    <span>
+                        <?= $block->escapeHtml(__('Quote Name')) ?>
+                    </span>
                 </label>
                 <div class="control">
                     <input name="quote_name" id="quote_name"
                            title="<?= $block->escapeHtmlAttr(__('Quote Name')) ?>" 
                            class="input-text" type="text" data-validate="{required:true}"/>
                 </div>
-            </div>        
-            <div class="field quote required">
-                <label class="label" for="quote_comment">
-                    <span><?= $block->escapeHtml(__('Leave your comment here')) ?></span>
+            </div> 
+            
+            <div class="field required">
+                <label class="label" for="quote_name">
+                    <span>
+                        <?= $block->escapeHtml(__('Leave your comment here')) ?>
+                    </span>
                 </label>
                 <div class="control">
-                    <textarea name="quote_comment" id="quote_comment"
+                    <textarea name="message" id="message"
                               title="<?= $block->escapeHtmlAttr(__('Leave your comment here')) ?>"
-                              class="input-text" cols="3" rows="3" data-validate="{required:true}">
+                              class="text-area" cols="5" rows="3" data-validate="{required:true}">
                     </textarea>
                 </div>
             </div> 
@@ -45,14 +50,14 @@
                     <span><?= $block->escapeHtml(__('Submit a Quote')) ?></span>
                 </button>
             </div>
-        </div>
-            
+        </div>            
     </form>
     </div>
 </div>
 
 <div id="click-section" class="click-section">
     <button type="button" class="action primary" data-trigger="trigger">
-        <span data-bind="i18n: 'Request a Quote'"></span>
+        <span data-bind="i18n: 'Request a Quote'">            
+        </span>
     </button>
 </div>

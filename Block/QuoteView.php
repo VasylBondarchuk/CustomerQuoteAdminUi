@@ -10,10 +10,11 @@ use Magento\User\Model\UserFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteInterface;
-use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\Collection;
-use Training\CustomerQuoteAdminUi\Model\ResourceModel\Quote\CollectionFactory;
-use Training\CustomerQuoteAdminUi\Api\Data\Quote\QuoteRepositoryInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\Collection;
+use Training\CustomerQuoteAdminUi\Model\ResourceModel\QuoteItems\CollectionFactory;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsRepositoryInterface;
+use Training\CustomerQuoteAdminUi\Api\Data\QuoteItems\QuoteItemsInterface;
 
 class QuoteView extends \Magento\Framework\View\Element\Template
 { 
@@ -45,20 +46,19 @@ class QuoteView extends \Magento\Framework\View\Element\Template
      */
     private RequestInterface $request;
     
-    /**
-     * 
-     * @var CustomerSession
-     */
-    private CustomerSession $customerSession;
     
     /**
      * 
-     * @var CustomerRepositoryInterface
+     * @var ProductRepositoryInterface
      */
-    private CustomerRepositoryInterface $customer;
+    private ProductRepositoryInterface $productRepository;
     
-    
-    private QuoteRepositoryInterface $quoteRepository;
+        
+    /**
+     * 
+     * @var QuoteRepositoryInterface
+     */
+    private QuoteItemsRepositoryInterface $quoteRepository;
     
     /**
      * 
@@ -70,6 +70,7 @@ class QuoteView extends \Magento\Framework\View\Element\Template
      * @param RequestInterface $request
      * @param CustomerSession $customerSession
      * @param CustomerRepositoryInterface $customerRepository
+     * @param QuoteItemsRepositoryInterface $quoteItemsRepository
      * @param array $data
      */
     public function __construct(
@@ -79,9 +80,8 @@ class QuoteView extends \Magento\Framework\View\Element\Template
         UserResourceModel $resourceModel,
         StoreManagerInterface $storeManager,
         RequestInterface $request,
-        CustomerSession $customerSession,
-        CustomerRepositoryInterface $customerRepository,
-        QuoteRepositoryInterface $quoteRepository,   
+        ProductRepositoryInterface $productRepository,    
+        QuoteItemsRepositoryInterface $quoteItemsRepository,   
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -90,9 +90,8 @@ class QuoteView extends \Magento\Framework\View\Element\Template
         $this->resourceModel = $resourceModel;
         $this->storeManager = $storeManager;
         $this->request = $request;
-        $this->customerSession = $customerSession;
-        $this->customer = $customerRepository;
-        $this->quoteRepository = $quoteRepository;
+        $this->productRepository = $productRepository;
+        $this->quoteRepository = $quoteItemsRepository;
     }   
     
     /**
@@ -102,55 +101,46 @@ class QuoteView extends \Magento\Framework\View\Element\Template
     public function getCollection()
     {  
         return $this->collectionFactory->create()            
-            ->addFieldToFilter(QuoteInterface::QUOTE_AUTHOR_ID, $this->getCustomerId())            
-            ->setOrder(QuoteInterface::QUOTE_CREATION_TIME, self::DEFAULT_SORT_ORDER);
+            ->addFieldToFilter(QuoteItemsInterface::QUOTE_ID, $this->getQuoteId()); 
     }
     
     /**
      * 
      * @return type
      */
-    private function getCustomerId() {
-        return (int)$this->customerSession->getCustomerId();
+    public function getProductSku($productId) {
+        return $this->productRepository->getById($productId)->getSku();
     }
     
-    /**
-     * @param int $customerId
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function getCustomerFullNameById(): string
-    {
-        $customerId = $this->getCustomerId();
-        try {
-            $customerFullName =
-                $this->customer->getById($customerId)->getFirstname(). ' ' .
-                $this->customer->getById($customerId)->getLastname();
-        } catch (NoSuchEntityException $e) {
-            $customerFullName = '';
-            $this->logger->error($e->getLogMessage());
-        }
-        return $customerFullName;
-    }
-    
-    /**
+        /**
      * 
-     * @param QuoteInterface $quote
      * @return type
      */
-    public function getViewUrl(QuoteInterface $quote) : string
-    {
-        return $this->getUrl('quote/index/view', ['quote_id' => $quote->getQuoteId()]);
+    public function getProductName($productId) {
+        return $this->productRepository->getById($productId)->getName();
     }
+     
     
      /**
      * 
      * @param QuoteInterface $quote
      * @return type
      */
-    public function getQuote() : QuoteInterface
+    public function getQuote() 
     {
         $quoteId = (int)($this->request->get(self::REQUEST_FIELD_NAME));
         return $this->quoteRepository->getById($quoteId);
+    }
+    
+        
+     /**
+     * 
+     * @param QuoteInterface $quote
+     * @return type
+     */
+    public function getQuoteId() : int
+    {
+        $quoteId = (int)($this->request->get('quote_id'));
+        return $quoteId;
     }
 }

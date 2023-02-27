@@ -1,0 +1,33 @@
+<?php $quoteItems = $block->getCollection(); ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Quotes')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= $block->escapeHtml(__('Product SKU')) ?></th>
+                    <th scope="col" class="col date"><?= $block->escapeHtml(__('Product Name')) ?></th>                    
+                    <th scope="col" class="col total"><?= $block->escapeHtml(__('Proposed Qty')) ?></th>
+                    <th scope="col" class="col status"><?= $block->escapeHtml(__('Proposed Price')) ?></th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($quoteItems as $quoteItem) : ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('Product SKU')) ?>"
+                            class="col id">
+                    <?= $block->escapeHtml($block->getProductSku($quoteItem->getProductId())) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>"
+                            class="col id">
+                    <?= $block->escapeHtml($block->getProductName($quoteItem->getProductId())) ?></td>
+                    <td data-th="<?= $block->escapeHtml(__('Proposed Qty')) ?>"
+                            class="col id">
+                    <?= $block->escapeHtml($quoteItem->getProposedQty()) ?></td>
+                    <td data-th="<?= $block->escapeHtml(__('Proposed Price')) ?>"
+                            class="col id">
+                    <?= $block->escapeHtml($quoteItem->getProposedPrice()) ?></td>
+                    </tr>
+                        
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div> 

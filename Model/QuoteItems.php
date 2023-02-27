@@ -47,7 +47,7 @@ class QuoteItems extends AbstractExtensibleModel implements QuoteItemsInterface
      */
     public function getProposedQty(): ?float
     {
-        return $this->getData(self::PROPOSED_QTY);
+        return (float)$this->getData(self::PROPOSED_QTY);
     }
 
     /**
@@ -55,7 +55,7 @@ class QuoteItems extends AbstractExtensibleModel implements QuoteItemsInterface
      */
     public function getProposedPrice(): ?float
     {
-        return $this->getData(self::PROPOSED_PRICE);
+        return (float)$this->getData(self::PROPOSED_PRICE);
     }
 
 
